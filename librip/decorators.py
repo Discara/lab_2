@@ -35,3 +35,24 @@
 # test_4
 # 1
 # 2
+
+
+def print_result(function):
+    def decorated_func(*args):
+        if len(args) == 0:
+            result = function()
+        else:
+            result = function(args[0])
+
+        print(function.__name__)
+
+        if type(result) == list:
+            for i in list(result):
+                print(i)
+        elif type(result) == dict:
+            for key in dict(result):
+                print(key, ' = ', dict(result)[key])
+        else:
+            print(result)
+        return result
+    return decorated_func
